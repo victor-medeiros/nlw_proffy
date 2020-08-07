@@ -4,27 +4,37 @@ import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
 
 import './styles.css'
 
-function TeacherItem() {
+export interface Teacher {
+    id: number;
+    name: string;
+    subject: string;
+    avatar: string;
+    bio: string;
+    cost: number;
+    whatsapp: string
+}
+
+interface TeacherItemProps {
+    teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
     return (
         <article className="teacher-item">
             <header>
-                <img src="https://avatars1.githubusercontent.com/u/61799781?s=460&u=d5e2fd78b63213760c022db74807957debcfe0e4&v=4" alt="Professor"/>
+                <img src={teacher.avatar} alt={teacher.name}/>
                 <div>
-                    <strong>Victor Medeiros</strong>
-                    <span>Física</span>
+                    <strong>{teacher.name}</strong>
+                    <span>{teacher.subject}</span>
                 </div>
             </header>
 
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis excepturi iste quidem porro ipsam explicabo beatae exercitationem deleniti eaque culpa, incidunt, quam earum alias commodi laboriosam cumque aliquam, fugit voluptates.
-                <br/> <br/>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores quod eius aut necessitatibus reiciendis quam soluta eum modi velit doloremque ipsum, obcaecati neque ratione dicta vitae adipisci natus quis magni!
-            </p>
+            <p>{teacher.bio}</p>
 
             <footer>
                 <p>
                     Preço/hora
-                    <strong>R$ 50,00</strong>
+                    <strong>R$ {teacher.cost}</strong>
                 </p>
                 <button type="button">
                     <img src={whatsappIcon} alt="Ícone do whatsapp"/>
